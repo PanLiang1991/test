@@ -3,6 +3,7 @@ package com.muyue.springbootdemo.controller;
 import com.muyue.springbootdemo.model.UserDomain;
 import com.muyue.springbootdemo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +35,11 @@ public class UserController {
     public Object findlUserById(@RequestParam("id") Integer id)
     {
         return userService.findUserById(id);
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public Object deleteById(@PathVariable Integer id) {
+        return userService.deleteById(id);
     }
 
 }

@@ -18,4 +18,6 @@ public interface UserDao {
 
     UserDomain findUserById(Integer userId);
 
+    int delete(Integer id);
+
 }

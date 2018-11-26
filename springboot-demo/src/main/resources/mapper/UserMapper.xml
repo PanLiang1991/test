@@ -44,5 +44,14 @@
     </if>
   </select>
 
+  <select id="delete" parameterType="java.lang.Integer">
+    delete from
+    <include refid="BASE_TABLE"/>
+    where
+    <if test="_parameter != null">
+      userId = #{userId, jdbcType=INTEGER}
+    </if>
+  </select>
+
 
 </mapper>
