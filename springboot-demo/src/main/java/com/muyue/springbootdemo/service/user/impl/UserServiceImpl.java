@@ -54,15 +54,28 @@ public class UserServiceImpl implements UserService {
         boolean hasKey = redisTemplate.hasKey(key);
         if(hasKey) {
             UserDomain user = operations.get(key);
-            log.info("UserServiceImpl.findUserById:从缓存中获取了用户 >> " + user.toString());
+            log.info("UserServiceImpl.findUserById:从【缓存】中获取了用户 >> " + user.toString());
             return user;
         }
         //从DB中获取用户信息
         UserDomain user = userDao.findUserById(id);
+        if (null == user) {
+            return null;
+        }
         //插入缓存
-        operations.set(key,user,1000, TimeUnit.SECONDS);
-        log.info("UserServiceImpl.findUserById:从数据库中获取了用户 >> " + user.toString());
+        operations.set(key,user,10, TimeUnit.SECONDS);
+        log.info("UserServiceImpl.findUserById:从【数据库】中获取了用户 >> " + user.toString());
         return user;
+    }
+
+    @Override
+    public int deleteById(Integer id) {
+        UserDomain userDomain = findUserById(id);
+        if (userDomain == null) {
+            return 0;
+        }
+        int response = userDao.delete(id);
+        return response;
     }
 
 }

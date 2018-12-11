@@ -14,4 +14,6 @@ public interface UserService {
     PageInfo<UserDomain> findAllUser(int pageNum, int pageSize);
 
     UserDomain findUserById(Integer id);
+
+    int deleteById(Integer id);
 }
