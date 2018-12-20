@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -26,6 +27,17 @@ public class TestApplication {
     public static void main(String[] args) throws Exception {
         Long temp = 1542556800000L;
         System.out.println(String.valueOf(temp));
+
+        Date date = new Date();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE,1);
+        date = calendar.getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = formatter.format(date) + " 00:00:00";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        date =  sdf.parse(dateString);
+        System.out.println(date);
 
         List<Map<String, String>> list = Lists.newArrayList();
         String filePath = "src/main/resources/税务系统政采节活动.xlsx";
