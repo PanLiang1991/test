@@ -1,6 +1,7 @@
 package com.muyue.springbootdemo;
 
 import com.google.common.collect.Lists;
+import com.muyue.springbootdemo.service.user.impl.UserServiceImpl;
 import lombok.NonNull;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -50,6 +51,9 @@ public class TestApplication {
         Sheet sheet = wb.getSheetAt(0);
         Row row = sheet.getRow(0);
         System.out.println(row.getCell(0));
+
+        ThreadLocal<UserServiceImpl> threadLocal = new ThreadLocal<>();
+        threadLocal.set(new UserServiceImpl());
 
 //        System.out.println(file.exists() + ":" + file.getCanonicalPath());
 
