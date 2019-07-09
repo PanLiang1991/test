@@ -18,4 +18,30 @@ public class UserDomain implements Serializable {
 
     private String phone;
 
+    public static class MyRunnable implements Runnable {
+        private ThreadLocal threadLocal = new ThreadLocal();
+
+        @Override
+        public void run() {
+            threadLocal.set((int) (Math.random() * 100D));
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+
+            }
+            System.out.println(threadLocal.get());
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException{
+        MyRunnable sharedRunnableInstance = new MyRunnable();
+        Thread thread1 = new Thread(sharedRunnableInstance);
+        Thread thread2 = new Thread(sharedRunnableInstance);
+        thread1.start();
+        System.out.println("xxxxxxxxxxx");
+        thread2.start();
+        Thread.currentThread().sleep(2001);
+        System.out.println("==============");
+    }
+
 }

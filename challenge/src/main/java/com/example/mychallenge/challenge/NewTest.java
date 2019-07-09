@@ -6,11 +6,9 @@ public class NewTest {
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 0; i < 10000; i++)
-                        counter++;
+            Thread thread = new Thread(() -> {
+                for (int j = 0; j < 10000; j++) {
+                    counter++;
                 }
             });
             thread.start();
