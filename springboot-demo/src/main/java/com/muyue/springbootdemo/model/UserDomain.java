@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class UserDomain implements Serializable {
 
+    private Long id;
+
     private Integer userId;
 
     private String userName;

@@ -6,7 +6,7 @@
   </sql>
 
   <sql id="BASE_COLUMN">
-    userId,userName,password,phone
+    id,userId,userName,password,phone
   </sql>
 
   <insert id="insert" parameterType="com.muyue.springbootdemo.model.UserDomain">
